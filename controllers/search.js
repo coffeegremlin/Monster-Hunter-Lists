@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 function weaponSearch(req, res){
-  axios.get(``)
-  // monsterhunter get address goes here ^^^
+  axios.get(`https://mhw-db.com/weapons/${req.body.query}`)
+  // monsterhunter weapon address goes here using GET ^^^
   .then(response => {
     res.render('search', {
       title: 'Weapon Search Results',
