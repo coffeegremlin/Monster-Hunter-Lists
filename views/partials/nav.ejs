@@ -8,6 +8,11 @@
       <a href="/auth/logout">
         <button type="submit">Logout</button>
       </a>
+      <form action="/weaponSearch" method="POST">
+        <input name="query" type="text" placeholder="Search for Upgradeable Weapons">
+        <button type="submit">Search</button>
+      </form>
+      <a href="/profiles/<%= user.profile._id %>/weapon">My Weapons</a>
     <% } else { %>
       <a href="/auth/google" class="siwg-link">
         <button type="submit" class="siwg">

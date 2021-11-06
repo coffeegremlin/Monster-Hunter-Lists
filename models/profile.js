@@ -1,8 +1,23 @@
-import mongoose from 'mongoose'
+import mongoose, { Schema } from 'mongoose'
+
+const itemSchema = new Schema({
+  id: String,
+  name: String,
+  quantity: Number,
+})
+
+const craftListSchema = new Schema({
+  id: String,
+  type: String,
+  image: String,
+  upgradeMaterials: [itemSchema],
+  finished: Boolean,
+})
 
 const profileSchema = new mongoose.Schema({
   name: String,
   avatar: String,
+  craftList: [craftListSchema],
 }, {
   timestamps: true
 })
