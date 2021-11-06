@@ -35,6 +35,12 @@ function showWeapon(req, res){
   })
 }
 
+// add edit/update/save functionality for user item list
+
+// add finished boolean checkbox functionality
+
+// add delete functionality for individual showWeapon listings if finished === true
+
 export {
   addToCraftList,
   craftList,

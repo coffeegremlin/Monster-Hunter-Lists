@@ -1,6 +1,14 @@
 <%- include('./partials/html-head') %> 
 <%- include('./partials/nav') %> 
 
-
+<h1>Weapon list</h1>
+<% profile.weapon.forEach(weapon => { %> 
+  <div>
+    <a href="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>">
+      <h2><%= weapon.name %></h2>
+      <img src="<%= weapon.image %>" alt="<%= weapon.name %>">
+    </a>
+  </div>
+<% }) %> 
 
 <%- include('./partials/footer') %> 
