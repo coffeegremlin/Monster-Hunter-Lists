@@ -3,7 +3,7 @@
 
 <h1>WEAPON SEARCH RESULT</h1>
 <h1><%= weapon.name %></h1>
-<img src="<%= weapon.assets.image %>" alt="<%= weapon.name %>">
+<img src="<%= weapon.assets.image%>" alt="<%= weapon.name %>">
 <p>Weapon Type: <%= weapon.type %></p>
 // Add weapon type
 // Add weapon name
@@ -17,18 +17,11 @@
     <td><%= upgradeMaterials.item.name %></td>
   </tr>
 <% }) %>
-<% weapon.upgradeMaterials.quantity.forEach(amount => { %>
+<% weapon.upgradeMaterials.quantity.length.forEach(amount => { %>
   <tr>
     <td><%= upgradeMaterials.amount %></td>
   </tr>
 <% }) %>
-<p><%= weapon.upgradeMaterials[0].item.name %>: <%= weapon.upgradeMaterials[0].quantity %> </p>
-<p><%= weapon.upgradeMaterials[1].item.name %>: <%= weapon.upgradeMaterials[1].quantity %> </p>
-<p><%= weapon.upgradeMaterials[2].item.name %>: <%= weapon.upgradeMaterials[2].quantity %> </p>
-<p><%= weapon.upgradeMaterials[3].item.name %>: <%= weapon.upgradeMaterials[3].quantity %> </p>
-<p><%= weapon.upgradeMaterials[4].item.name %>: <%= weapon.upgradeMaterials[4].quantity %> </p>
-<p><%= weapon.upgradeMaterials[5].item.name %>: <%= weapon.upgradeMaterials[5].quantity %> </p>
-<p><%= weapon.upgradeMaterials[6].item.name %>: <%= weapon.upgradeMaterials[6].quantity %> </p>
 <form action="/profiles/weapon" method="POST">
   <input type="text" name="name" hidden value="<% weapon.name %>">
   <input type="text" name="type" hidden value="<% weapon.type %>">

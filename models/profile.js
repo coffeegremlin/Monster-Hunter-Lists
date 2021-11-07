@@ -9,8 +9,9 @@ const itemSchema = new Schema({
 
 const craftListSchema = new Schema({
   id: String,
+  name: String,
   type: String,
-  image: String,
+  imageUrl: String,
   upgradeMaterials: [itemSchema],
   finished: Boolean,
 })
@@ -18,7 +19,7 @@ const craftListSchema = new Schema({
 const profileSchema = new mongoose.Schema({
   name: String,
   avatar: String,
-  craftList: [craftListSchema],
+  weapon: [craftListSchema],
 }, {
   timestamps: true
 })
