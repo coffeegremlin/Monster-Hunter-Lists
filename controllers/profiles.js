@@ -37,6 +37,14 @@ function showWeapon(req, res){
   })
 }
 
+function deleteWeapon(req, res){
+  Profile.findById(req.params.profileId, function(err, profile){
+    profile.weapon.remove({_id: req.params.weaponId})
+    profile.save(function(err){
+      res.redirect(`/profiles/craftShow`)
+    })
+  })
+}
 // add edit/update/save functionality for user item list
 
 // add finished boolean checkbox functionality
@@ -47,4 +55,5 @@ export {
   addToCraftList,
   craftList,
   showWeapon,
+  deleteWeapon as delete,
 }
