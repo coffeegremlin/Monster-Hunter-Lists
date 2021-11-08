@@ -1,34 +1,36 @@
 <%- include('./partials/html-head') %> 
 <%- include('./partials/nav') %> 
 
-<h1>WEAPON SEARCH RESULT</h1>
-<h1><%= weapon.name %></h1>
-<img src="<%= weapon.assets.image%>" alt="<%= weapon.name %>">
-<p>Weapon Type: <%= weapon.type %></p>
-// Add weapon type
-// Add weapon name
-// Add weapon upgrade materials required using itemSchema
-  //Item Schema:
-    // _id
-    // name
-    // quantity
-<% weapon.upgradeMaterials.item.name.forEach(name => { %> 
-  <tr>
-    <td><%= upgradeMaterials.item.name %></td>
-  </tr>
-<% }) %>
-<% weapon.upgradeMaterials.quantity.length.forEach(amount => { %>
-  <tr>
-    <td><%= upgradeMaterials.amount %></td>
-  </tr>
-<% }) %>
-<form action="/profiles/weapon" method="POST">
-  <input type="text" name="name" hidden value="<% weapon.name %>">
-  <input type="text" name="type" hidden value="<% weapon.type %>">
-  <input type="text" name="imageUrl" hidden value="<%= weapon.assets.image %>">
-  <input type="text" name="requiredItems" hidden value="<%= name %>">
-  <input type="text" name="itemname" hidden value="<%= amount %>">
-  <button type="submit">Add to Crafting List</button>
-</form>
+<!-- Add weapon type
+Add weapon name
+Add weapon upgrade materials required using itemSchema
+  Item Schema:
+    _id
+    name
+    quantity -->
 
-<%- include('./partials/footer') %> 
+<h1>WEAPON SEARCH RESULT</h1>
+<% weapons.forEach(weapon => { %>
+  <h1><%= weapon.name %></h1>
+  <img src="<%= weapon.assets?.image%>" alt="<%= weapon?.name %>">
+  <p>Weapon Type: <%= weapon.type %></p>
+
+  <% if(weapon.crafting?.upgradeMaterials?.length){ %> 
+    <% weapon.crafting.upgradeMaterials.forEach(itemDetail => { %> 
+      <tr>
+        <td><%= itemDetail.quantity %></td>
+        <td><%= itemDetail.item?.name %></td>
+      </tr>
+    <% }) %>
+  <% } %> 
+  <form action="/profiles/weapon" method="POST">
+    <input type="text" name="name" hidden value="<% weapon?.name %>">
+    <input type="text" name="type" hidden value="<% weapon?.type %>">
+    <input type="text" name="imageUrl" hidden value="<%= weapon?.assets?.image %>">
+    <input type="text" name="requiredItems" hidden value="<%= weapon?.upgradeMaterials?.item?.itemName %>">
+    <input type="text" name="itemname" hidden value="<%= weapon?.upgradeMaterials?.quantity?.amount %>">
+    <button type="submit">Add to Crafting List</button>
+  </form>
+<% }) %> 
+
+<%- include('./partials/footer') %>

@@ -9,12 +9,12 @@
         <button type="submit">Logout</button>
       </a>
       <form action="/weaponSearch" method="POST">
-        <!-- <input name="query" type="text" placeholder="Search for Upgradeable Weapons"> -->
-        <option name="query" value="<%= weapon.type %>"><%= weapon.type %></option>
-        <option name="query" value="<%= weapon.name %>"><%= weapon.name %></option>
+        <input name="query" type="text" placeholder="Search for Upgradeable Weapons">
+        <!-- <option name="query" value="<%#= weapon.type %>"><%#= weapon.type %></option>
+        <option name="query" value="<%#= weapon.name %>"><%#= weapon.name %></option> -->
         <button type="submit">Search</button>
       </form>
-      <a href="/profiles/<%= user.profile._id %>/weapon">My Weapons</a>
+      <a href="/profiles/<%= user.profile._id %>/weapons">My Weapons</a>
     <% } else { %>
       <a href="/auth/google" class="siwg-link">
         <button type="submit" class="siwg">

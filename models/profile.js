@@ -8,7 +8,6 @@ const itemSchema = new Schema({
 })
 
 const craftListSchema = new Schema({
-  id: String,
   name: String,
   type: String,
   imageUrl: String,
