@@ -1,18 +1,19 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
-const itemSchema = new Schema({
-  name: String,
-  quantity: Number,
-}, {
-  timestamps: true
-})
+// const itemSchema = new Schema({
+//   itemAmount: String,
+//   itemName: String,
+// }, {
+//   timestamps: true
+// })
 
 const craftListSchema = new Schema({
   name: String,
   type: String,
   imageUrl: String,
-  upgradeMaterials: [itemSchema],
+  itemAmount: String,
+  itemName: String,
   finished: Boolean,
 }, {
   timestamps: true

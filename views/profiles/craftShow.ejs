@@ -5,12 +5,16 @@
 <h2><%= weapon.name %></h2>
 <img src="<%= weapon.imageUrl %>" alt="<%= weapon.name %>">
 <!-- add all crafting details from MH API HERE!!! -->
-<% if (weapon.items) { %> 
+<% if (weapon) { %> 
+  <% console.log("item detail is", weapon.userItem) %> 
 <table>
   <thead>
     <tr>
       <td>
-        Item
+        Item: <%# weapon.userItem.forEach(itemName => { %>
+          <%#= itemName %> 
+          <%# console.log("item name is: ", itemName) %> 
+          <%# }) %> 
       </td>
       <!-- add item name in here ^^^ -->
       <td>
@@ -18,13 +22,11 @@
       </td>
       <!-- add item quanity here ^^^ -->
     </tr>
-<!-- add all user actions like finished functionality and delete functionality HERE!!! -->
   </thead>
+  <!-- add all user actions like finished functionality and delete functionality HERE!!! -->
   <tbody>
-    <% weapon.items.forEach(item => { %>
+    <%# weapon.itemDetail.forEach(userItem => { %>
       <tr>
-        <td><%= weapon.item.name %></td>
-        <td><%= weapon.item.quantity %></td>
         <td>
           <!-- add finished checkbox here -->
         </td>
@@ -32,7 +34,7 @@
           <!-- add delete functionality based off if finished === true -->
         </td>
       </tr>
-    <% }) %>
+    <%# }) %>
   </tbody>
 </table>
 <% } else { %>

@@ -17,7 +17,7 @@ Add weapon upgrade materials required using itemSchema
   <p><%= weapon.type %></p>
   <h3>Craftable:</h3>
   <p><%= weapon.crafting?.craftable ? 'Craftable' : 'Not Craftable' %></p>
-  <% if(weapon.crafting?.upgradeMaterials?.length){ %> 
+  <% if(weapon.crafting.upgradeMaterials?.length){ %> 
     <% weapon.crafting.upgradeMaterials.forEach(itemDetail => { %> 
       <table>
         <h4>
@@ -34,7 +34,9 @@ Add weapon upgrade materials required using itemSchema
     <input type="text" name="name" hidden value="<%= weapon.name %>">
     <input type="text" name="type" hidden value="<%= weapon.type %>">
     <input type="text" name="imageUrl" hidden value="<%= weapon.assets.image %>">
-    <input type="text" name="requiredItems" hidden value="<%= weapon.crafting.upgradeMaterials.itemDetail %>">
+    <input type="text" name="itemAmount" hidden value="<%= weapon.crafting?.upgradeMaterials?.quantity %>">
+    <input type="text" name="itemName" hidden value="<%= weapon.crafting?.upgradeMaterials?.item?.name %>">
+    <!-- Add a quantity input and a item.name input separate to push to schema -->
     <button type="submit">Add to Crafting List</button>
   </form>
 <% }) %> 
