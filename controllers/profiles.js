@@ -26,7 +26,7 @@ function showWeapon(req, res){
   Profile.findById(req.params.profileId)
   .then(profile => {
     let index = profile.weapon.findIndex(item => item._id == req.params.weaponId)
-    res.render('profiles/showWeapon', {
+    res.render('profiles/craftShow', {
       title: `${profile.name}'s Weapons`,
       user: req.user,
       profile,

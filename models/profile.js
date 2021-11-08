@@ -2,9 +2,10 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const itemSchema = new Schema({
-  id: String,
   name: String,
   quantity: Number,
+}, {
+  timestamps: true
 })
 
 const craftListSchema = new Schema({
@@ -13,6 +14,8 @@ const craftListSchema = new Schema({
   imageUrl: String,
   upgradeMaterials: [itemSchema],
   finished: Boolean,
+}, {
+  timestamps: true
 })
 
 const profileSchema = new mongoose.Schema({
