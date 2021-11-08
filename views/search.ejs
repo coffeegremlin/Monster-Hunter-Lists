@@ -25,10 +25,9 @@
 <form action="/profiles/weapon" method="POST">
   <input type="text" name="name" hidden value="<% weapon.name %>">
   <input type="text" name="type" hidden value="<% weapon.type %>">
-  <input type="text" name="imageURL" hidden value="<%= weapon.assets.image %>">
+  <input type="text" name="imageUrl" hidden value="<%= weapon.assets.image %>">
   <input type="text" name="requiredItems" hidden value="<%= name %>">
   <input type="text" name="itemname" hidden value="<%= amount %>">
-  
   <button type="submit">Add to Crafting List</button>
 </form>
 

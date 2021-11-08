@@ -4,12 +4,40 @@
 <h1>Weapon Crafting Requirements</h1>
 <h2><%= weapon.name %></h2>
 <img src="<%= weapon.imageUrl %>" alt="<%= weapon.name %>">
-
-
 // add all crafting details from MH API HERE!!!
-
+<% if (weapon.items.length) { %> 
+<table>
+  <thead>
+    <tr>
+      <td>
+        Item
+      </td>
+      // add item name in here ^^^
+      <td>
+        Quantity Held
+      </td>
+      // add item quanity here ^^^
+    </tr>
 // add all user actions like finished functionality and delete functionality HERE!!!
-
+  </thead>
+  <tbody>
+    <% weapon.items.forEach(item => { %>
+      <tr>
+        <td><% item.name %></td>
+        <td><% item.quantity %></td>
+        <td>
+          //add finished checkbox here
+        </td>
+        <td>
+          //add delete functionality based off if finished === true
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+<% } else { %>
+  <h3>No Tickets Yet</h3>
+  <% } %>
 // USE EJS
 
 <%- include('../partials/footer') %> 
