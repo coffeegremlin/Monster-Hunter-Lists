@@ -30,11 +30,11 @@ Add weapon upgrade materials required using itemSchema
       </table>
     <% }) %>
   <% } %> 
-  <form action="/profiles/weapons" method="POST">
-    <input type="text" name="wName" hidden value="<% weapon.name %>">
-    <input type="text" name="wType" hidden value="<% weapon.type %>">
+  <form action="/profiles/weapon" method="POST">
+    <input type="text" name="name" hidden value="<%= weapon.name %>">
+    <input type="text" name="type" hidden value="<%= weapon.type %>">
     <input type="text" name="imageUrl" hidden value="<%= weapon.assets.image %>">
-    <input type="text" name="requiredItems" hidden value="<%= weapon.crafting.upgradeMaterials?.itemDetail %>">
+    <input type="text" name="requiredItems" hidden value="<%= weapon.crafting.upgradeMaterials.itemDetail %>">
     <button type="submit">Add to Crafting List</button>
   </form>
 <% }) %> 

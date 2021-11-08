@@ -4,7 +4,7 @@
 <h1>Weapon Crafting Requirements Details</h1>
 <h2><%= weapon.name %></h2>
 <img src="<%= weapon.imageUrl %>" alt="<%= weapon.name %>">
-// add all crafting details from MH API HERE!!!
+<!-- add all crafting details from MH API HERE!!! -->
 <% if (weapon.items) { %> 
 <table>
   <thead>
@@ -23,8 +23,8 @@
   <tbody>
     <% weapon.items.forEach(item => { %>
       <tr>
-        <td><% item.name %></td>
-        <td><% item.quantity %></td>
+        <td><%= weapon.item.name %></td>
+        <td><%= weapon.item.quantity %></td>
         <td>
           <!-- add finished checkbox here -->
         </td>
