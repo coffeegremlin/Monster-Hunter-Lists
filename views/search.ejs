@@ -34,14 +34,14 @@ Add weapon upgrade materials required using itemSchema
       <input type="text" name="name" hidden value="<%= weapon.name %>">
       <input type="text" name="type" hidden value="<%= weapon.type %>">
       <input type="text" name="imageUrl" hidden value="<%= weapon.assets.image %>">
-      <input type="text" name="itemAmount" hidden value="<%= weapon.crafting?.upgradeMaterials[0].quantity %>">
-      <input type="text" name="itemName" hidden value="<%= weapon.crafting?.upgradeMaterials[0].item?.name %>">
-      <!-- <input type="text" name="itemObjects" hidden value="<%#= weapon.crafting?.upgradeMaterials %>"> -->
-      <input type="text" name="itemCombine" hidden value="<%= weapon.crafting?.upgradeMaterials?.forEach(itemCombo => {itemCombo.quantity && itemCombo.item?.name}) %>">
-      <!-- Add a way to iterate through the whole array of upgradeMaterials.forEach -->
+      <% if(weapon.crafting.upgradeMaterials?.length){ %>
+        <% weapon.crafting.upgradeMaterials.forEach((itemDetail, idx) => { %>
+          <input type="text" name="itemDetailQuantity<%= idx %>" hidden value="<%= itemDetail.quantity %>">
+          <input type="text" name="itemDetailName<%= idx %>" hidden value="<%= itemDetail.item?.name %>">
+        <% }) %>
+      <% } %>
       <button type="submit">Add to Crafting List</button>
     </form>
-    <% console.log("weapon item array is ", weapon.crafting?.upgradeMaterials) %> 
   <% }) %> 
   <% console.log("here is ", weapons) %> 
 </main>

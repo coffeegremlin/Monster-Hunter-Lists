@@ -2,16 +2,14 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const itemSchema = new Schema({
-  name: String,
-  amount: Number,
+  itemDetailQuantity: Number,
+  itemDetailName: String,
 })
 
 const craftListSchema = new Schema({
   name: String,
   type: String,
   imageUrl: String,
-  itemAmount: String,
-  itemName: String,
   itemObjects: [itemSchema],
   finished: {type: Boolean, default: false},
 }, {

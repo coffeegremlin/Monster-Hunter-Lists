@@ -7,15 +7,13 @@
 
 <table>
   <tr>
-    <td>Item Name: <%= weapon.itemName %></td>
-    <td>Required amount: <%= weapon.itemAmount %></td>
     <% console.log('new item schema is: ', weapon.itemObjects) %> 
   </tr>
 </table>
 <!-- add all crafting details from MH API HERE!!! -->
 <% if (weapon) { %>
-  <% console.log("item name is ", weapon.itemName) %> 
-  <% console.log("item amount is ", weapon.itemAmount) %> 
+  <% console.log("item name is ", weapon.userItemName) %> 
+  <% console.log("item amount is ", weapon.userItemAmount) %> 
   <%# console.log("item combine is ", weapon.itemCombine) %> 
 <table>
   <thead>
