@@ -47,6 +47,7 @@ function deleteWeapon(req, res){
     })
   })
 }
+
 // add edit/update/save functionality for user item list
 
 // add finished boolean checkbox functionality

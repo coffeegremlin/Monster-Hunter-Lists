@@ -17,36 +17,29 @@
   <%# console.log("item combine is ", weapon.itemCombine) %> 
 <table>
   <thead>
+    <form 
+      action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>" 
+      method="POST"
+      >
+      <label for="userItemName">Item: </label>
+      <input name="userItemName" type="text">
+      <label for="userItemQuantity">Quantity Held: </label>
+      <input name="userItemQuantity" type="number">
+      <button type="submit">Add item to gathering list</button>
+    </form>
+  </thead>
+  <tbody>
     <tr>
       <td>
-        Item:
-          <%# weapon.userItem.forEach(itemName => { %>
-          <%#= itemName %> 
-          <%# console.log("item name is: ", itemName) %> 
-          <%# }) %> 
+        <!-- add finished checkbox here -->
       </td>
-      <!-- add item name in here ^^^ -->
       <td>
-        Quantity Held
+        <form action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>?_method=DELETE" method="POST">
+          <button type="submit">Delete Weapon</button>
+        </form>
+        <!-- add delete functionality based off if finished === true -->
       </td>
-      <!-- add item quanity here ^^^ -->
     </tr>
-  </thead>
-  <!-- add all user actions like finished functionality and delete functionality HERE!!! -->
-  <tbody>
-    <%# weapon.itemDetail.forEach(userItem => { %>
-      <tr>
-        <td>
-          <!-- add finished checkbox here -->
-        </td>
-        <td>
-          <form action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>?_method=DELETE" method="POST">
-            <button type="submit">Delete Weapon</button>
-          </form>
-          <!-- add delete functionality based off if finished === true -->
-        </td>
-      </tr>
-    <%# }) %>
   </tbody>
 </table>
 <% } else { %>
