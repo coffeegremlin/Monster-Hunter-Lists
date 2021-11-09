@@ -4,10 +4,12 @@
 <h1>Weapon Crafting Requirements Details</h1>
 <h2><%= weapon.name %></h2>
 <img src="<%= weapon.imageUrl %>" alt="<%= weapon.name %>">
+
 <table>
   <tr>
     <td>Item Name: <%= weapon.itemName %></td>
     <td>Required amount: <%= weapon.itemAmount %></td>
+    <% console.log('new item schema is: ', weapon.itemObjects) %> 
   </tr>
 </table>
 <!-- add all crafting details from MH API HERE!!! -->

@@ -1,12 +1,10 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
-// const itemSchema = new Schema({
-//   itemAmount: String,
-//   itemName: String,
-// }, {
-//   timestamps: true
-// })
+const itemSchema = new Schema({
+  name: String,
+  amount: Number,
+})
 
 const craftListSchema = new Schema({
   name: String,
@@ -14,8 +12,8 @@ const craftListSchema = new Schema({
   imageUrl: String,
   itemAmount: String,
   itemName: String,
-  // itemCombine: {type: Object},
-  finished: Boolean,
+  itemObjects: [itemSchema],
+  finished: {type: Boolean, default: false},
 }, {
   timestamps: true
 })
