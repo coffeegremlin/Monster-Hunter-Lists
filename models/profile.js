@@ -14,6 +14,7 @@ const craftListSchema = new Schema({
   imageUrl: String,
   itemAmount: String,
   itemName: String,
+  // itemCombine: {type: Object},
   finished: Boolean,
 }, {
   timestamps: true

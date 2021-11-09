@@ -8,6 +8,8 @@ router.post('/weapon', isLoggedIn, profilesCtrl.addToCraftList)
 router.get('/:id/weapon', isLoggedIn, profilesCtrl.craftList)
 // localhost:3000/:profileId/weapon/:weaponId - GET
 router.get('/:profileId/weapon/:weaponId', isLoggedIn, profilesCtrl.showWeapon)
+// localhost:3000/:profileId/weapon/:weaponId - DELETE
+router.delete('/:profileId/weapon/:weaponId', isLoggedIn, profilesCtrl.delete)
 
 function isLoggedIn(req, res, next){
   if(req.isAuthenticated()){

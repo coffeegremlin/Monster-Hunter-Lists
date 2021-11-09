@@ -38,12 +38,20 @@ function showWeapon(req, res){
 }
 
 function deleteWeapon(req, res){
-  Profile.findById(req.params.profileId, function(err, profile){
+  Profile.findById(req.params.profileId)
+  .then(profile => {
     profile.weapon.remove({_id: req.params.weaponId})
     profile.save(function(err){
-      res.redirect(`/profiles/craftShow`)
+      res.redirect('profiles/craftList')
     })
   })
+  //   function(err, profile){
+  //   profile.weapon.remove({_id: req.params.weaponId})
+  //   profile.save(function(err){
+  //     console.log("error delete: ", err)
+  //     res.redirect(`/profiles`)
+  //   })
+  // })
 }
 // add edit/update/save functionality for user item list
 

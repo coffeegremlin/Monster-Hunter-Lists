@@ -4,15 +4,23 @@
 <h1>Weapon Crafting Requirements Details</h1>
 <h2><%= weapon.name %></h2>
 <img src="<%= weapon.imageUrl %>" alt="<%= weapon.name %>">
+<table>
+  <tr>
+    <td>Item Name: <%= weapon.itemName %></td>
+    <td>Required amount: <%= weapon.itemAmount %></td>
+  </tr>
+</table>
 <!-- add all crafting details from MH API HERE!!! -->
-<% if (weapon) { %> 
-  <% console.log("item name is", weapon.itemName) %> 
-  <% console.log("item amount is", weapon.itemAmount) %> 
+<% if (weapon) { %>
+  <% console.log("item name is ", weapon.itemName) %> 
+  <% console.log("item amount is ", weapon.itemAmount) %> 
+  <%# console.log("item combine is ", weapon.itemCombine) %> 
 <table>
   <thead>
     <tr>
       <td>
-        Item: <%# weapon.userItem.forEach(itemName => { %>
+        Item:
+          <%# weapon.userItem.forEach(itemName => { %>
           <%#= itemName %> 
           <%# console.log("item name is: ", itemName) %> 
           <%# }) %> 
@@ -32,7 +40,7 @@
           <!-- add finished checkbox here -->
         </td>
         <td>
-          <form id="delete-weapon-button" action="/profile/weapon/<%= weapon._id %>?_method=DELETE" method="POST">
+          <form id="delete-weapon-button" action="/<%= profile._id %>/weapon/<%= weapon._id %>?_method=DELETE" method="POST">
             <button type="submit">Delete Weapon</button>
           </form>
           <!-- add delete functionality based off if finished === true -->
