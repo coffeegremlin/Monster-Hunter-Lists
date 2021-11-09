@@ -1,7 +1,7 @@
 import { Profile } from '../models/profile.js'
 
 function addToCraftList(req, res){
-  console.log("add to list", req.body)
+  console.log(req.body)
   Profile.findById(req.user.profile._id)
   .then(profile => {
     profile.weapon.push(req.body)
@@ -32,7 +32,7 @@ function showWeapon(req, res){
       user: req.user,
       profile,
       weapon: profile.weapon[index],
-      
+      userItem: profile.weapon.userItem
     })
   })
 }
