@@ -13,6 +13,7 @@ router.post('/:profileId/weapon/:weaponId', isLoggedIn, profilesCtrl.create)
 // localhost:3000/:profileId/weapon/:weaponId - DELETE
 router.delete('/:profileId/weapon/:weaponId', isLoggedIn, profilesCtrl.delete)
 
+
 function isLoggedIn(req, res, next){
   if(req.isAuthenticated()){
     return next()

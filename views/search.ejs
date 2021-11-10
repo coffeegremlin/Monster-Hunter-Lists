@@ -1,16 +1,9 @@
 <%- include('./partials/html-head') %> 
 <%- include('./partials/nav') %> 
 
-<!-- Add weapon type
-Add weapon name
-Add weapon upgrade materials required using itemSchema
-  Item Schema:
-    _id
-    name
-    quantity -->
 <main>
   <h1>WEAPON SEARCH RESULT</h1>
-  <% weapons.forEach(weapon => { %>
+  <% weapon.forEach(weapon => { %>
     <h1><%= weapon.name %></h1>
     <img src="<%= weapon.assets?.image%>" alt="<%= weapon?.name %>">
     <h3>Weapon Type:</h3>
@@ -44,6 +37,7 @@ Add weapon upgrade materials required using itemSchema
       <button type="submit">Add to Crafting List</button>
     </form>
   <% }) %> 
-  <% console.log("here is ", weapons) %> 
+  <% console.log("here is ", weapon) %> 
 </main>
+
 <%- include('./partials/footer') %>

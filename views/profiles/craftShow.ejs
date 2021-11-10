@@ -1,48 +1,41 @@
 <%- include('../partials/html-head') %> 
 <%- include('../partials/nav') %> 
 
-<h1>Weapon Crafting Requirements Details</h1>
-<h2><%= weapon.name %></h2>
-<img src="<%= weapon.imageUrl %>" alt="<%= weapon.name %>">
-
+<main>
+  <h1>Weapon Crafting Requirements Details</h1>
 <!-- add all crafting details from MH API HERE!!! -->
-<% if (weapon) { %>
-  <% console.log("item name is ", weapon.userItemName) %> 
-  <% console.log("item amount is ", weapon.userItemAmount) %> 
-  <%# console.log("item combine is ", weapon.itemCombine) %> 
-<table>
-  <thead>
-    <form 
-      id="add-item-form"
-      action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>" 
-      method="POST">
-      <label for="item">
-        Item:
-        <input name="item" type="text">
-      </label>
-      <label for="numberHeld">
-        Quantity Held: 
-        <input name="numberHeld" type="number">
-      </label>
-      <button type="submit">Add item to gathering list</button>
-    </form>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <!-- add finished checkbox here -->
-      </td>
-      <td>
-        <form action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>?_method=DELETE" method="POST">
-          <button type="submit">Delete Weapon</button>
-        </form>
-        <!-- add delete functionality based off if finished === true -->
-      </td>
-    </tr>
-  </tbody>
-</table>
-<% } else { %>
-  <h3>No Items Needed</h3>
-  <% } %>
+<% console.log('weapon item objects is: ', weapon.itemObjects) %> 
+  <h2><%= weapon.name %></h2>
+  <img src="<%= weapon.imageUrl %>" alt="<%= weapon.name %>">
+  <ul>
+    <% if (weapon.itemObjects.length) %> 
+      <% weapon.itemObjects.forEach(listing => { %>
+        <li>
+          <h4>Item: <%= listing.itemDetailName %></h4>
+        </li>
+        <li>
+          <h4>Required Amount: <%= listing.itemDetailQuantity %></h4>
+        </li>
+      <% }) %> 
+      </ul>
+  <table>
+    <thead>
+      <form action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>" 
+        method="POST">
+        <label for="">
+          <input type="text" name="">
+        </label>
+        <label for="">
+          <input type="text" name="">
+        </label>
+      </form>
+    </thead>
+  </table>
 
+  <form 
+    action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>?_method=DELETE" 
+    method="POST">
+      <button type="submit">Delete Weapon</button>
+  </form>
+</main>
 <%- include('../partials/footer') %> 

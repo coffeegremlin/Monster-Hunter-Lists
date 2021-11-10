@@ -9,9 +9,9 @@ router.get('/', function (req, res) {
 
 router.post('/weaponSearch', isLoggedIn, searchCtrl.weaponSearch)
 
-router.post('/weaponTypeFilter', isLoggedIn, searchCtrl.weaponTypeFilter)
+// router.post('/weaponTypeFilter', isLoggedIn, searchCtrl.weaponTypeFilter)
 
-router.post('/weaponNameFilter', isLoggedIn, searchCtrl.weaponNameFilter)
+// router.post('/weaponNameFilter', isLoggedIn, searchCtrl.weaponNameFilter)
 
 function isLoggedIn(req, res, next){
   if(req.isAuthenticated()){

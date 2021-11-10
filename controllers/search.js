@@ -9,7 +9,7 @@ function weaponSearch(req, res){
     res.render('search', {
       title: 'Weapon Search Results',
       user: req.user,
-      weapons: response.data
+      weapon: response.data
     })
   })
   .catch(err => {
@@ -18,34 +18,34 @@ function weaponSearch(req, res){
   })
 }
 
-function weaponTypeFilter (req, res){
-  axios.get(`https://mhw-db.com/weapons?p={"type":true}`)
-  .then(response => {
-    res.render('search1', {
-      title: 'Weapon Type Results',
-      user: req.user,
-      weaponType: response.data
-    })
-  })
-  .catch(err => {
-    console.log(err)
-    res.redirect('/profiles/weapon')
-  })
-}
+// function weaponTypeFilter (req, res){
+//   axios.get(`https://mhw-db.com/weapons?p={"type":true}`)
+//   .then(response => {
+//     res.render('search1', {
+//       title: 'Weapon Type Results',
+//       user: req.user,
+//       weaponType: response.data
+//     })
+//   })
+//   .catch(err => {
+//     console.log(err)
+//     res.redirect('/profiles/weapon')
+//   })
+// }
 
-function weaponNameFilter (req, res){
-  axios.get(`https://mhw-db.com/weapons?p={"name":true}`)
-  .then(response => {
-    res.render('search2', {
-      title: 'Weapon Name Results',
-      user: req.user,
-      weaponName: response.data
-    })
-  })
-}
+// function weaponNameFilter (req, res){
+//   axios.get(`https://mhw-db.com/weapons?p={"name":true}`)
+//   .then(response => {
+//     res.render('search2', {
+//       title: 'Weapon Name Results',
+//       user: req.user,
+//       weaponName: response.data
+//     })
+//   })
+// }
 
 export {
   weaponSearch,
-  weaponTypeFilter,
-  weaponNameFilter,
+  // weaponTypeFilter,
+  // weaponNameFilter,
 }
