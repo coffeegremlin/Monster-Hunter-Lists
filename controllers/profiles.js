@@ -1,17 +1,5 @@
 import { Profile } from '../models/profile.js'
 
-// function addToCraftList(req, res){
-//   Profile.findById(req.user.profile._id)
-//   .then(profile => {
-//   profile.weapon.push(req.body)
-//     console.log('This is profile weapon: ', profile.weapon)
-//     profile.save()
-//     .then(()=> {
-//       res.redirect('/')
-//     })
-//   })
-// }
-
 async function addToCraftList(req, res){
   try {
     const profile = await Profile.findById(req.user.profile._id)
@@ -47,17 +35,6 @@ async function sortItemSchema(body) {
 }
 
 
-function createListing (req, res){
-  // req.body.finished = !!req.body.finished
-  Profile.findById(req.user.profile._id)
-  .then(profile => {
-    profile.weapon.push(req.body)
-    profile.save()
-    .then(()=> {
-      res.redirect(`/profiles/${profile._id}/weapon/:id`)
-    })
-  })
-}
 
 function craftList(req, res){
   Profile.findById(req.params.id)
@@ -81,7 +58,20 @@ function showWeapon(req, res){
       profile,
       weapon: profile.weapon[index],
       userItemName: profile.weapon.itemObjects,
+      itemList: profile.weapon.userList,
       // userItemAmount: profile.weapon.itemObjects.itemDetailQuantity,
+    })
+  })
+}
+
+function createItemListing (req, res){
+  // req.body.finished = !!req.body.finished
+  Profile.findById(req.user.profile._id)
+  .then(profile => {
+    profile.weapon.push(req.body)
+    profile.save()
+    .then(()=> {
+      res.redirect(`/profiles/${profile._id}/weapon/:id`)
     })
   })
 }
@@ -105,7 +95,7 @@ function deleteWeapon(req, res){
 
 export {
   addToCraftList,
-  createListing as create,
+  createItemListing as create,
   craftList,
   showWeapon,
   deleteWeapon as delete,

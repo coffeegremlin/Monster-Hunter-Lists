@@ -3,11 +3,11 @@
 
 <main>
   <h1>Weapon Crafting Requirements Details</h1>
-<!-- add all crafting details from MH API HERE!!! -->
-<% console.log('weapon item objects is: ', weapon.itemObjects) %> 
-  <h2><%= weapon.name %></h2>
+<!-- WEAPON INFO FROM MH API GOES HERE vvv -->
+  <h2>Weapon Name: <%= weapon.name %></h2>
+  <h2>Weapon Type: <%= weapon.type %></h2>
   <img src="<%= weapon.imageUrl %>" alt="<%= weapon.name %>">
-  <ul>
+  <ul id="mh-api">
     <% if (weapon.itemObjects.length) %> 
       <% weapon.itemObjects.forEach(listing => { %>
         <li>
@@ -18,7 +18,8 @@
         </li>
       <% }) %> 
       </ul>
-  <table>
+<!-- USER ITEM INPUTS GO HERE vvv -->
+  <table id="user-table">
     <thead>
       <form action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>" 
         method="POST">
@@ -28,6 +29,7 @@
         <label for="">
           <input type="text" name="">
         </label>
+        <button type="submit">Add Item to My List</button>
       </form>
     </thead>
   </table>
