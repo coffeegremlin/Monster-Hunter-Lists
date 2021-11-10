@@ -1,22 +1,63 @@
 import { Profile } from '../models/profile.js'
 
-function addToCraftList(req, res){
+// function addToCraftList(req, res){
+//   Profile.findById(req.user.profile._id)
+//   .then(profile => {
+//   profile.weapon.push(req.body)
+//     console.log('This is profile weapon: ', profile.weapon)
+//     profile.save()
+//     .then(()=> {
+//       res.redirect('/')
+//     })
+//   })
+// }
+
+async function addToCraftList(req, res){
+  try {
+    const profile = await Profile.findById(req.user.profile._id)
+    profile.weapon.push(req.body)
+    const items = await sortItemSchema(req.body)
+    items.forEach(function(item){
+      profile.weapon[profile.weapon.length-1].itemObjects.push(item)
+    })
+    profile.save()
+    res.redirect('/')
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+async function sortItemSchema(body) {
+  const arr = []
+  for (const property in body) {
+    if (property.includes('itemDetail')) {
+      const item = {}
+      item[property.slice(0, -1)] = body[property]
+      for (const propertyTwo in body) {
+        if (propertyTwo.includes(property.slice(property.length - 1))) {
+          item[propertyTwo.slice(0, -1)] = body[propertyTwo]
+          delete body[propertyTwo]
+        }
+      }
+      delete body[property]
+      arr.push(item)
+    }
+  }
+  return arr
+}
+
+
+function createListing (req, res){
+  // req.body.finished = !!req.body.finished
   Profile.findById(req.user.profile._id)
   .then(profile => {
-  profile.weapon.push(req.body)
-    console.log('This is profile weapon: ', profile.weapon)
+    profile.weapon.push(req.body)
     profile.save()
     .then(()=> {
-      res.redirect('/')
+      res.redirect(`/profiles/${profile._id}/weapon/:id`)
     })
   })
 }
-
-// async function addToCraftList(req, res){
-//   const items = req.body.map((item)=>{
-//     if (item)
-//   })
-// }
 
 function craftList(req, res){
   Profile.findById(req.params.id)
@@ -64,6 +105,7 @@ function deleteWeapon(req, res){
 
 export {
   addToCraftList,
+  createListing as create,
   craftList,
   showWeapon,
   deleteWeapon as delete,

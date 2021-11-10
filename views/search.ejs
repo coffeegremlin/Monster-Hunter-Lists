@@ -38,6 +38,7 @@ Add weapon upgrade materials required using itemSchema
         <% weapon.crafting.upgradeMaterials.forEach((itemDetail, idx) => { %>
           <input type="text" name="itemDetailQuantity<%= idx %>" hidden value="<%= itemDetail.quantity %>">
           <input type="text" name="itemDetailName<%= idx %>" hidden value="<%= itemDetail.item?.name %>">
+          <!-- PUSH INTO profile/weapon/itemschema -->
         <% }) %>
       <% } %>
       <button type="submit">Add to Crafting List</button>

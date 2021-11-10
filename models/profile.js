@@ -2,8 +2,17 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const itemSchema = new Schema({
-  itemDetailQuantity: Number,
+  itemDetailQuantity: String,
   itemDetailName: String,
+})
+
+const userItemListSchema = new Schema({
+  itemUser: {
+    type: String,
+  },
+  numberHeld: { type: Number, min: 0}
+}, {
+  timestamps: true,
 })
 
 const craftListSchema = new Schema({
@@ -11,6 +20,7 @@ const craftListSchema = new Schema({
   type: String,
   imageUrl: String,
   itemObjects: [itemSchema],
+  userList: [userItemListSchema],
   finished: {type: Boolean, default: false},
 }, {
   timestamps: true
