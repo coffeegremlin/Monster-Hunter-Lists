@@ -51,12 +51,12 @@ function showWeapon(req, res){
   Profile.findById(req.params.profileId)
   .then(profile => {
     console.log('BIG COMMENT: ', profile)
-    let index = profile.weapon.findIndex(item => item._id == req.params.weaponId)
+    let weapon = profile.weapon.find(weapon => String(weapon._id) === req.params.weaponId)
     res.render('profiles/craftShow', {
       title: `${profile.name}'s Weapons`,
       user: req.user,
       profile,
-      weapon: profile.weapon[index],
+      weapon,
       userItemName: profile.weapon.itemObjects,
       itemList: profile.weapon.userList,
       // userItemAmount: profile.weapon.itemObjects.itemDetailQuantity,
@@ -66,15 +66,24 @@ function showWeapon(req, res){
 
 function createItemListing (req, res){
   // req.body.finished = !!req.body.finished
-  Profile.findById(req.user.profile._id)
+  Profile.findById(req.params.profileId)
   .then(profile => {
-    profile.weapon.push(req.body)
+    const weapon = profile.weapon.find(weapon => req.params.weaponId === String(weapon._id))
+console.log('weapon 71', weapon)
+    const weaponIndex = profile.weapon.findIndex(weapon => req.params.weaponId === String(weapon._id))
+console.log('weapon index 73', weaponIndex)
+console.log('req body userlist 75', req.body.userList)
+    profile.weapon[weaponIndex].userList.push(req.body)
+console.log('req body 77', req.body)
+console.log('oh god oh god weaponindex 79', profile.weapon[weaponIndex])
     profile.save()
     .then(()=> {
-      res.redirect(`/profiles/${profile._id}/weapon/:id`)
+      res.redirect(`/profiles/${profile._id}/weapon/${weapon._id}`)
     })
   })
 }
+
+// profile.weapon[profile.weapon.length-1].itemObjects.push
 
 function deleteWeapon(req, res){
   Profile.findById(req.user.profile._id)

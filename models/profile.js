@@ -7,9 +7,7 @@ const itemSchema = new Schema({
 })
 
 const userItemListSchema = new Schema({
-  itemUser: {
-    type: String,
-  },
+  itemUser: {type: String},
   numberHeld: { type: Number, min: 0}
 }, {
   timestamps: true,

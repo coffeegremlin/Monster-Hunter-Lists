@@ -17,20 +17,27 @@
           <h4>Required Amount: <%= listing.itemDetailQuantity %></h4>
         </li>
       <% }) %> 
-      </ul>
+  </ul>
 <!-- USER ITEM INPUTS GO HERE vvv -->
   <table id="user-table">
     <thead>
       <form action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>" 
         method="POST">
         <label for="">
-          <input type="text" name="">
+          <input type="text" name="itemUser">
         </label>
         <label for="">
-          <input type="text" name="">
+          <input type="text" name="numberHeld">
         </label>
         <button type="submit">Add Item to My List</button>
       </form>
+      
+      <ul>
+      <% weapon.userList.forEach(userListed=> { %>
+        <li>Item Held: <%= userListed.itemUser %></li>
+        <li>Quantity Held: <%= userListed.numberHeld %></li>
+      <% }) %> 
+    </ul>
     </thead>
   </table>
 
