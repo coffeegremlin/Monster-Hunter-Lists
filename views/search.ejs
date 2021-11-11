@@ -1,7 +1,8 @@
 <%- include('./partials/html-head') %> 
+
 <%- include('./partials/nav') %> 
 
-<main>
+<main id="seach-form-main">
   <h1>WEAPON SEARCH RESULT</h1>
   <% weapon.forEach(weapon => { %>
     <h1><%= weapon.name %></h1>
@@ -34,7 +35,7 @@
           <!-- PUSH INTO profile/weapon/itemschema -->
         <% }) %>
       <% } %>
-      <button type="submit">Add to Crafting List</button>
+      <button type="submit" class="far fa-save"></button>
     </form>
   <% }) %> 
   <% console.log("here is ", weapon) %> 

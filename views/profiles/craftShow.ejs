@@ -1,28 +1,33 @@
 <%- include('../partials/html-head') %> 
+
+<link rel="stylesheet" href="/stylesheets/craftShow.css">
+
 <%- include('../partials/nav') %> 
 
-<main>
+<main id="show-page-main">
   <h1>Weapon Crafting Requirements Details</h1>
   <!-- WEAPON INFO FROM MH API GOES HERE vvv -->
-  <h2>Weapon Name: <%= weapon.name %></h2>
-  <h2>Weapon Type: <%= weapon.type %></h2>
-  <img src="<%= weapon.imageUrl %>" alt="<%= weapon.name %>">
-  <ul id="mh-api">
-    <% if (weapon.itemObjects.length) %> 
-    <% weapon.itemObjects.forEach(listing => { %>
-      <li>
-        <h4>Item: <%= listing.itemDetailName %></h4>
-      </li>
-      <li>
-        <h4>Required Amount: <%= listing.itemDetailQuantity %></h4>
-      </li>
+  <table id="api-table">
+    <h2>Weapon Name: <%= weapon.name %></h2>
+    <h2>Weapon Type: <%= weapon.type %></h2>
+    <img src="<%= weapon.imageUrl %>" alt="<%= weapon.name %>">
+    <ul id="mh-api">
+      <% if (weapon.itemObjects.length) %> 
+      <% weapon.itemObjects.forEach(listing => { %>
+        <li>
+          <h4>Item: <%= listing.itemDetailName %></h4>
+        </li>
+        <li>
+          <h4>Required Amount: <%= listing.itemDetailQuantity %></h4>
+        </li>
       <% }) %> 
       <form 
         action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>?_method=DELETE" 
         method="POST">
           <button type="submit">Delete Weapon</button>
       </form>
-  </ul>
+    </ul>
+  </table>
 <!-- USER ITEM INPUTS GO HERE vvv -->
   <table id="user-table">
     <thead>
@@ -36,7 +41,6 @@
         </label>
         <button type="submit">Add Item to My List</button>
       </form>
-      
       <ul id="user-item-list">
       <% weapon.userList.forEach(userListed=> { %>
         <li>Item Held: <%= userListed.itemUser %></li>
@@ -62,6 +66,6 @@
     </ul>
     </thead>
   </table>
-
 </main>
+
 <%- include('../partials/footer') %> 

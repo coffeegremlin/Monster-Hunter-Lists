@@ -5,17 +5,21 @@
 <body>
   <nav>
     <% if (user) { %>
-      <a href="/auth/logout">
-        <button type="submit">Logout</button>
+      <a href="/">
+        <button type="submit" class="fas fa-globe"></button>
       </a>
-      <a href="/">Home Page</a>
+      <a href="/profiles/<%= user.profile._id %>/weapon">
+        <button type="submit" class="fas fa-scroll"></button>
+      </a>
       <form action="/weaponSearch" method="POST">
         <input name="query" type="text" placeholder="Search for Upgradeable Weapons, Input is Case Sensitive">
         <!-- <option name="query" value="<%#= weapon.type %>"><%#= weapon.type %></option>
-        <option name="query" value="<%#= weapon.name %>"><%#= weapon.name %></option> -->
-        <button type="submit">Search for Weapon</button>
-      </form>
-      <a href="/profiles/<%= user.profile._id %>/weapon">My Weapons</a>
+          <option name="query" value="<%#= weapon.name %>"><%#= weapon.name %></option> -->
+          <button type="submit" class="fas fa-search"></button>
+        </form>
+        <a href="/auth/logout">
+          <button type="submit" class="fas fa-sign-out-alt"></button>
+        </a>
     <% } else { %>
       <a href="/auth/google" class="siwg-link">
         <button type="submit" class="siwg">
