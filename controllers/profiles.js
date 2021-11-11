@@ -95,6 +95,29 @@ function editItemListing(req, res){
   })
 }
 
+function removeItemListing(req, res){
+  const itemId = req.body.itemId
+  Profile.findById(req.params.profileId)
+  .then(profile => {
+    const weapon = profile.weapon.id(req.params.weaponId)
+    const userList = weapon.userList
+    // let thisItem
+    // if (userList.length){
+    //   userList.forEach(item=>{
+    //     if (item._id == itemId){
+    //       thisItem = item
+    //     }
+    //   })
+    // }
+    // thisItem.userList = req.body.userList
+    userList.remove({_id:itemId})
+    profile.save()
+    .then(()=> {
+      (res.redirect(`/profiles/${profile._id}/weapon/${weapon._id}`))
+    })
+  })
+}
+
 function deleteWeapon(req, res){
   Profile.findById(req.user.profile._id)
   .then(profile => {
@@ -108,12 +131,11 @@ function deleteWeapon(req, res){
 
 // add finished boolean checkbox functionality
 
-// add delete functionality for individual showWeapon listings if finished === true
-
 export {
   addToCraftList,
   createItemListing as create,
   editItemListing as edit,
+  removeItemListing,
   craftList,
   showWeapon,
   deleteWeapon as delete,
