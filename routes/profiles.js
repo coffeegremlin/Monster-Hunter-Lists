@@ -13,9 +13,9 @@ router.post('/:profileId/weapon/:weaponId/', isLoggedIn, profilesCtrl.create)
 // localhost:3000/:profileId/weapon/:weaponId - PUT (maybe...)
 router.put('/:profileId/weapon/:weaponId/', isLoggedIn, profilesCtrl.edit)
 // localhost:3000/:profileId/weapon/:weaponId - DELETE
-router.delete('/:profileId/weapon/:weaponId/', isLoggedIn, profilesCtrl.removeItemListing)
+router.delete('/:profileId/weapon/:weaponId/:itemId', isLoggedIn, profilesCtrl.removeItemListing)
 // localhost:3000/:profileId/weapon/:weaponId - DELETE
-router.delete('/:profileId/weapon/:weaponId', isLoggedIn, profilesCtrl.delete)
+router.delete('/:profileId/weapon/:weaponId/', isLoggedIn, profilesCtrl.deleteWeapon)
 
 
 function isLoggedIn(req, res, next){

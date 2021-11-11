@@ -3,20 +3,25 @@
 
 <main>
   <h1>Weapon Crafting Requirements Details</h1>
-<!-- WEAPON INFO FROM MH API GOES HERE vvv -->
+  <!-- WEAPON INFO FROM MH API GOES HERE vvv -->
   <h2>Weapon Name: <%= weapon.name %></h2>
   <h2>Weapon Type: <%= weapon.type %></h2>
   <img src="<%= weapon.imageUrl %>" alt="<%= weapon.name %>">
   <ul id="mh-api">
     <% if (weapon.itemObjects.length) %> 
-      <% weapon.itemObjects.forEach(listing => { %>
-        <li>
-          <h4>Item: <%= listing.itemDetailName %></h4>
-        </li>
-        <li>
-          <h4>Required Amount: <%= listing.itemDetailQuantity %></h4>
-        </li>
+    <% weapon.itemObjects.forEach(listing => { %>
+      <li>
+        <h4>Item: <%= listing.itemDetailName %></h4>
+      </li>
+      <li>
+        <h4>Required Amount: <%= listing.itemDetailQuantity %></h4>
+      </li>
       <% }) %> 
+      <form 
+        action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>?_method=DELETE" 
+        method="POST">
+          <button type="submit">Delete Weapon</button>
+      </form>
   </ul>
 <!-- USER ITEM INPUTS GO HERE vvv -->
   <table id="user-table">
@@ -48,7 +53,7 @@
         <form 
         id="remove-item-listing" 
         name="itemId"
-        action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>?_method=DELETE" 
+        action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>/<%= userListed._id %>?_method=DELETE" 
         method="POST">
           <input name="itemId" hidden value="<%= userListed._id %>">
           <button type="submit">Delete This Item Listing</button>
@@ -58,10 +63,5 @@
     </thead>
   </table>
 
-  <form 
-    action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>?_method=DELETE" 
-    method="POST">
-      <button type="submit">Delete Weapon</button>
-  </form>
 </main>
 <%- include('../partials/footer') %> 

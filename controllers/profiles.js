@@ -101,15 +101,6 @@ function removeItemListing(req, res){
   .then(profile => {
     const weapon = profile.weapon.id(req.params.weaponId)
     const userList = weapon.userList
-    // let thisItem
-    // if (userList.length){
-    //   userList.forEach(item=>{
-    //     if (item._id == itemId){
-    //       thisItem = item
-    //     }
-    //   })
-    // }
-    // thisItem.userList = req.body.userList
     userList.remove({_id:itemId})
     profile.save()
     .then(()=> {
@@ -138,5 +129,5 @@ export {
   removeItemListing,
   craftList,
   showWeapon,
-  deleteWeapon as delete,
+  deleteWeapon,
 }
