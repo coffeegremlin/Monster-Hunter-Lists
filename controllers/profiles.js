@@ -16,7 +16,7 @@ async function addToCraftList(req, res){
 }
 
 async function sortItemSchema(body) {
-  const arr = []
+  const arrayItems = []
   for (const property in body) {
     if (property.includes('itemDetail')) {
       const item = {}
@@ -28,13 +28,11 @@ async function sortItemSchema(body) {
         }
       }
       delete body[property]
-      arr.push(item)
+      arrayItems.push(item)
     }
   }
-  return arr
+  return arrayItems
 }
-
-
 
 function craftList(req, res){
   Profile.findById(req.params.id)
@@ -59,23 +57,15 @@ function showWeapon(req, res){
       weapon,
       userItemName: profile.weapon.itemObjects,
       itemList: profile.weapon.userList,
-      // userItemAmount: profile.weapon.itemObjects.itemDetailQuantity,
     })
   })
 }
 
 function createItemListing (req, res){
-  // req.body.finished = !!req.body.finished
   Profile.findById(req.params.profileId)
   .then(profile => {
-    const weapon = profile.weapon.find(weapon => req.params.weaponId === String(weapon._id))
-console.log('weapon 71', weapon)
-    const weaponIndex = profile.weapon.findIndex(weapon => req.params.weaponId === String(weapon._id))
-console.log('weapon index 73', weaponIndex)
-console.log('req body userlist 75', req.body.userList)
-    profile.weapon[weaponIndex].userList.push(req.body)
-console.log('req body 77', req.body)
-console.log('oh god oh god weaponindex 79', profile.weapon[weaponIndex])
+    const weapon = profile.weapon.id(req.params.weaponId)
+    weapon.userList.push(req.body)
     profile.save()
     .then(()=> {
       res.redirect(`/profiles/${profile._id}/weapon/${weapon._id}`)
@@ -83,7 +73,27 @@ console.log('oh god oh god weaponindex 79', profile.weapon[weaponIndex])
   })
 }
 
-// profile.weapon[profile.weapon.length-1].itemObjects.push
+function editItemListing(req, res){
+  const itemId = req.body.itemId
+  Profile.findByIdAndUpdate(req.params.profileId)
+  .then(profile => {
+    const weapon = profile.weapon.id(req.params.weaponId)
+    const userList = weapon.userList
+    let thisItem
+    if (userList.length){
+      userList.forEach(item=>{
+        if (item._id == itemId){
+          thisItem = item
+        }
+      })
+    }
+    thisItem.numberHeld = req.body.numberHeld
+    profile.save()
+    .then(()=> {
+      (res.redirect(`/profiles/${profile._id}/weapon/${weapon._id}`))
+    })
+  })
+}
 
 function deleteWeapon(req, res){
   Profile.findById(req.user.profile._id)
@@ -96,8 +106,6 @@ function deleteWeapon(req, res){
   })
 }
 
-// add edit/update/save functionality for user item list
-
 // add finished boolean checkbox functionality
 
 // add delete functionality for individual showWeapon listings if finished === true
@@ -105,6 +113,7 @@ function deleteWeapon(req, res){
 export {
   addToCraftList,
   createItemListing as create,
+  editItemListing as edit,
   craftList,
   showWeapon,
   deleteWeapon as delete,

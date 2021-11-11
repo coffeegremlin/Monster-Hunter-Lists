@@ -8,8 +8,10 @@ router.post('/weapon', isLoggedIn, profilesCtrl.addToCraftList)
 router.get('/:id/weapon', isLoggedIn, profilesCtrl.craftList)
 // localhost:3000/:profileId/weapon/:weaponId - GET
 router.get('/:profileId/weapon/:weaponId', isLoggedIn, profilesCtrl.showWeapon)
-// localhost:3000/ - POST
+// localhost:3000/:profileId/weapon/:weaponId - POST
 router.post('/:profileId/weapon/:weaponId/', isLoggedIn, profilesCtrl.create)
+// localhost:3000/:profileId/weapon/:weaponId(/:itemId???) - PUT (maybe...)
+router.put('/:profileId/weapon/:weaponId/', isLoggedIn, profilesCtrl.edit)
 // localhost:3000/:profileId/weapon/:weaponId - DELETE
 router.delete('/:profileId/weapon/:weaponId', isLoggedIn, profilesCtrl.delete)
 

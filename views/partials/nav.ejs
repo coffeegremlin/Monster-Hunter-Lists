@@ -10,10 +10,10 @@
       </a>
       <a href="/">Home Page</a>
       <form action="/weaponSearch" method="POST">
-        <input name="query" type="text" placeholder="Search for Upgradeable Weapons">
+        <input name="query" type="text" placeholder="Search for Upgradeable Weapons, Input is Case Sensitive">
         <!-- <option name="query" value="<%#= weapon.type %>"><%#= weapon.type %></option>
         <option name="query" value="<%#= weapon.name %>"><%#= weapon.name %></option> -->
-        <button type="submit">Search</button>
+        <button type="submit">Search for Weapon</button>
       </form>
       <a href="/profiles/<%= user.profile._id %>/weapon">My Weapons</a>
     <% } else { %>

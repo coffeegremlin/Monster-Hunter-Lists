@@ -24,18 +24,27 @@
       <form action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>" 
         method="POST">
         <label for="">
-          <input type="text" name="itemUser">
+          <input type="text" name="itemUser" placeholder="Item Name">
         </label>
         <label for="">
-          <input type="text" name="numberHeld">
+          <input type="text" name="numberHeld" placeholder="Amount Held">
         </label>
         <button type="submit">Add Item to My List</button>
       </form>
       
-      <ul>
+      <ul id="user-item-list">
       <% weapon.userList.forEach(userListed=> { %>
         <li>Item Held: <%= userListed.itemUser %></li>
-        <li>Quantity Held: <%= userListed.numberHeld %></li>
+        <li>Quantity Held: <%= userListed.numberHeld %>
+          <form 
+          id="update-amount-form" 
+          action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>?_method=PUT" 
+          method="POST">
+          <input name="itemId" hidden value="<%= userListed._id %>">
+            <input type="text" name="numberHeld" placeholder="<%= userListed.numberHeld %>">
+              <button type="submit">Update Amount Held</button>
+          </form>
+        </li>
       <% }) %> 
     </ul>
     </thead>
