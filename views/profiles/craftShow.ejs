@@ -4,68 +4,85 @@
 
 <%- include('../partials/nav') %> 
 
-<main id="show-page-main">
-  <h1>Weapon Crafting Requirements Details</h1>
+<h1>Weapon Crafting Requirements:</h1>
+<div class="show-page-main">
   <!-- WEAPON INFO FROM MH API GOES HERE vvv -->
-  <table id="api-table">
-    <h2>Weapon Name: <%= weapon.name %></h2>
-    <h2>Weapon Type: <%= weapon.type %></h2>
+  <div class="api-table">
+    <h1>Weapon Info:</h1>
+    <h2>Weapon Name: </h2>
+    <h3><%= weapon.name %></h3>
+    <h2>Weapon Type: </h2>
+    <h3><%= weapon.type %></h3>
     <img src="<%= weapon.imageUrl %>" alt="<%= weapon.name %>">
-    <ul id="mh-api">
-      <% if (weapon.itemObjects.length) %> 
+      <% if (weapon.itemObjects.length) { %> 
       <% weapon.itemObjects.forEach(listing => { %>
-        <li>
-          <h4>Item: <%= listing.itemDetailName %></h4>
-        </li>
-        <li>
-          <h4>Required Amount: <%= listing.itemDetailQuantity %></h4>
-        </li>
+        <p>
+          <h4>Item: </h4>
+          <%= listing.itemDetailName %>
+        </p>
+        <p>
+          <h4>Required Amount: </h4>
+          <%= listing.itemDetailQuantity %>
+        </p>
       <% }) %> 
-      <form 
-        action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>?_method=DELETE" 
-        method="POST">
-          <button type="submit">Delete Weapon</button>
-      </form>
-    </ul>
-  </table>
+      <% } %>
+    <form 
+      action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>?_method=DELETE" 
+      method="POST">
+        <h4>
+          Delete This Weapon?
+        </h4>
+        <button type="submit" style="color: #bd5624;" class="far fa-trash-alt"></button>
+    </form>
+  </div>
 <!-- USER ITEM INPUTS GO HERE vvv -->
-  <table id="user-table">
-    <thead>
+  <div class="user-table">
+    <h2><%= user.profile.name %>'s Inventory</h2>
       <form action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>" 
         method="POST">
-        <label for="">
-          <input type="text" name="itemUser" placeholder="Item Name">
-        </label>
-        <label for="">
-          <input type="text" name="numberHeld" placeholder="Amount Held">
-        </label>
-        <button type="submit">Add Item to My List</button>
+        <h2>Add Item: </h2>
+          <div>
+            <input type="text" name="itemUser" placeholder="Item Name" style="color: #bd5624;">
+          </div>
+          <div>
+            <input type="text" name="numberHeld" placeholder="Amount Held" style="color: #bd5624;">
+          </div>
+          <div>
+            <button class="far fa-bookmark" type="submit" style="color: #bd5624;"></button>
+          </div>
       </form>
-      <ul id="user-item-list">
+      <div id="user-item-list">
+        <h2>Items Held</h2>
       <% weapon.userList.forEach(userListed=> { %>
-        <li>Item Held: <%= userListed.itemUser %></li>
-        <li>Quantity Held: <%= userListed.numberHeld %>
-          <form 
-          id="update-amount-form" 
-          action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>?_method=PUT" 
-          method="POST">
-          <input name="itemId" hidden value="<%= userListed._id %>">
-          <input type="text" name="numberHeld" placeholder="<%= userListed.numberHeld %>">
-            <button type="submit">Update Amount Held</button>
-          </form>
-        </li>
-        <form 
-        id="remove-item-listing" 
-        name="itemId"
-        action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>/<%= userListed._id %>?_method=DELETE" 
-        method="POST">
-          <input name="itemId" hidden value="<%= userListed._id %>">
-          <button type="submit">Delete This Item Listing</button>
-        </form>
+        <p>Name: <%= userListed.itemUser %></p>
+        <p>Quantity: <%= userListed.numberHeld %>
+          <div>
+            <form 
+            action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>?_method=PUT" 
+            method="POST">
+            <div>
+              <input name="itemId" hidden value="<%= userListed._id %>">
+            </div>
+            <div>
+              <input id="update-amount-form" type="number" name="numberHeld" placeholder="<%= userListed.numberHeld %>">
+            </div>
+              <button type="submit" class="far fa-edit" style="color: #bd5624;"></button>
+            </form>
+          </div>
+        </p>
+          <div>
+            <form 
+            id="remove-item-listing" 
+            name="itemId"
+            action="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>/<%= userListed._id %>?_method=DELETE" 
+            method="POST">
+              <input name="itemId" hidden value="<%= userListed._id %>">
+              <button type="submit" style="color: #bd5624;" class="far fa-trash-alt"></button>
+            </form>
+          </div>
       <% }) %> 
-    </ul>
-    </thead>
-  </table>
-</main>
+      </div>
+  </div>
+</div>
 
 <%- include('../partials/footer') %> 

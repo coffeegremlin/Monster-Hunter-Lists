@@ -4,16 +4,19 @@
 
 <main id="seach-form-main">
   <h1>WEAPON SEARCH RESULT</h1>
-  <% weapon.forEach(weapon => { %>
-    <h1><%= weapon.name %></h1>
-    <img src="<%= weapon.assets?.image%>" alt="<%= weapon?.name %>">
-    <h3>Weapon Type:</h3>
-    <p><%= weapon.type %></p>
-    <h3>Craftable:</h3>
-    <p><%= weapon.crafting?.craftable ? 'Craftable' : 'Not Craftable' %></p>
-    <% if(weapon.crafting.upgradeMaterials?.length){ %> 
-      <% weapon.crafting.upgradeMaterials.forEach(itemDetail => { %> 
-        <table>
+  <div id="search-form-div">
+    <% weapon.forEach(weapon => { %>
+      <div class="weapon-deets">
+        <h1><%= weapon.name %></h1>
+        <img src="<%= weapon.assets?.image%>" alt="<%= weapon?.name %>">
+        <h3>Weapon Type:</h3>
+        <p><%= weapon.type %></p>
+        <h3>Craftable:</h3>
+        <p><%= weapon.crafting?.craftable ? 'Craftable' : 'Not Craftable' %></p>
+      </div>
+      <div class="weapon-needs">
+      <% if(weapon.crafting.upgradeMaterials?.length){ %> 
+        <% weapon.crafting.upgradeMaterials.forEach(itemDetail => { %> 
           <h4>
             Item Required: 
             <tr>
@@ -21,24 +24,24 @@
               <td><%= itemDetail.item?.name %></td>
             </tr>
           </h4>
-        </table>
-      <% }) %>
-    <% } %> 
-    <form action="/profiles/weapon" method="POST">
-      <input type="text" name="name" hidden value="<%= weapon.name %>">
-      <input type="text" name="type" hidden value="<%= weapon.type %>">
-      <input type="text" name="imageUrl" hidden value="<%= weapon.assets.image %>">
-      <% if(weapon.crafting.upgradeMaterials?.length){ %>
-        <% weapon.crafting.upgradeMaterials.forEach((itemDetail, idx) => { %>
-          <input type="text" name="itemDetailQuantity<%= idx %>" hidden value="<%= itemDetail.quantity %>">
-          <input type="text" name="itemDetailName<%= idx %>" hidden value="<%= itemDetail.item?.name %>">
-          <!-- PUSH INTO profile/weapon/itemschema -->
         <% }) %>
-      <% } %>
-      <button type="submit" class="far fa-save"></button>
-    </form>
-  <% }) %> 
-  <% console.log("here is ", weapon) %> 
+      <% } %> 
+      <form action="/profiles/weapon" method="POST">
+        <input type="text" name="name" hidden value="<%= weapon.name %>">
+        <input type="text" name="type" hidden value="<%= weapon.type %>">
+        <input type="text" name="imageUrl" hidden value="<%= weapon.assets.image %>">
+        <% if(weapon.crafting.upgradeMaterials?.length){ %>
+          <% weapon.crafting.upgradeMaterials.forEach((itemDetail, idx) => { %>
+            <input type="text" name="itemDetailQuantity<%= idx %>" hidden value="<%= itemDetail.quantity %>">
+            <input type="text" name="itemDetailName<%= idx %>" hidden value="<%= itemDetail.item?.name %>">
+            <!-- PUSH INTO profile/weapon/itemschema -->
+          <% }) %>
+        <% } %>
+        <button type="submit" class="far fa-save"></button>
+      </form>
+    </div>
+    <% }) %> 
+  </div>
 </main>
 
 <%- include('./partials/footer') %>
