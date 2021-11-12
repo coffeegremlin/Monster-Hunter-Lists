@@ -7,6 +7,7 @@ import session from 'express-session'
 import logger from 'morgan'
 import methodOverride from 'method-override'
 import passport from 'passport'
+// import { passUserToView } from './controllers/profiles.js'
 
 // create the express app
 const app = express()
@@ -61,6 +62,9 @@ app.use(passport.session())
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
 app.use('/profiles', profileRouter)
+
+// users profiles middleware
+// app.use(passUserToView)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

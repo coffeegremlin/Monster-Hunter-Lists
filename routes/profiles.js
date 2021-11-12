@@ -2,6 +2,9 @@ import { Router } from 'express'
 import * as profilesCtrl from '../controllers/profiles.js'
 const router = Router()
 
+// router.get('/', isLoggedIn, profilesCtrl.indexProfiles)
+// router.get('/:id', isLoggedIn, profilesCtrl.showProfiles)
+
 // localhost:3000/weapons - POST
 router.post('/weapon', isLoggedIn, profilesCtrl.addToCraftList)
 // localhost:3000/:id/weapon - GET

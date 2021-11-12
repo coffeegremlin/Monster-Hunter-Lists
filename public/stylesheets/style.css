@@ -19,10 +19,12 @@ html {
 
 body {
   min-height: 100%;
+  min-width: 100%;
   background-color: #6A9488;
   color: #212A11;
   /* Use a system font, if none are available use an available sans-sarif font */
-  font-family: 'Exo 2', sans-serif;
+  font-family: 'Cabin', sans-serif;
+  font-size: 3rem;
   margin: 0;
 }
 
@@ -30,8 +32,8 @@ nav {
   font-family: 'Cabin', sans-serif;
   height: 60px;
   background-image: linear-gradient(to bottom, #bd5624, #a46e1c, #8a7e2d, #75894a, #679068, #659274, #66937f, #6a9488, #6a9488, #6a9488, #6a9488, #6a9488);
-  font-size: 1.6rem;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 20px;
@@ -40,7 +42,6 @@ nav {
 
 main {
   color: #212A11;
-  /* height: 100%; */
   font-family: 'Cabin', sans-serif;
   background-color: #6A9488;
   text-shadow: 0px 1px 2px #57423F;
@@ -57,7 +58,6 @@ div {
 }
 
 h1 {
-  font-size: 3.6rem;
   text-align: center;
   text-shadow: 0px 1px 2px #57423F;
 }
@@ -66,25 +66,6 @@ h1 {
   margin-top: 50px;
   border-radius: 5%;
 }
-/* main */
-/* #home-page {
-  
-} */
-/* 
-
-nav {
-
-}
-
-form
-#nav-search {
-
-}
-
-main
-#show-page-main {
-
-} */
 
 #search-form-main {
   display: flex;
@@ -155,6 +136,7 @@ main
 }
 
 .api-table {
+  font-size: 2.2rem;
   display: block;
   flex-grow: 0;
   flex-shrink: 1;
@@ -171,6 +153,7 @@ main
 }
 
 .user-table {
+  font-size: 2.2rem;
   display: block;
   flex-grow: 0;
   flex-shrink: 1;

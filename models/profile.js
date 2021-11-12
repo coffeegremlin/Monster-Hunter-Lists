@@ -24,10 +24,15 @@ const craftListSchema = new Schema({
   timestamps: true
 })
 
+// const hunterSchema = new Schema({
+//   hunters: {type: mongoose.Schema.Types.ObjectId, ref: 'Profile'}
+// })
+
 const profileSchema = new mongoose.Schema({
   name: String,
   avatar: String,
   weapon: [craftListSchema],
+  // hunter: [hunterSchema]
 }, {
   timestamps: true
 })

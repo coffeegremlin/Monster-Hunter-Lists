@@ -1,5 +1,46 @@
 import { Profile } from '../models/profile.js'
 
+// function passUserToView(req, res, next) {
+//   res.locals.user = req.user ? req.user : null
+//   next()
+// }
+
+// function indexProfiles(req, res) {
+//   Profile.find({})
+//   .then(hunter => {
+//     res.render("/", {
+//       hunter,
+//     })
+//   })
+//   .catch(err => {
+//     console.log(err)
+//     res.redirect('/')
+//   })
+// }
+
+// function showProfiles(req, res) {
+//   Profile.findById(req.params.id)
+//   .then(profile => {
+//     Profile.findById(req.user.profile._id)
+//     .then(self => {
+//       const isSelf = self._id.equals(profile._id)
+//       Profile.find({hunter: profile._id})
+//       .then(isHunter => {
+//         res.render("/", {
+//           profile,
+//           self,
+//           isSelf,
+//           isHunter
+//         })
+//       })
+//     })
+//   })
+//   .catch(err => {
+//     console.log(err)
+//     res.redirect(`/profiles/${req.user.profile._id}`)
+//   })
+// }
+
 async function addToCraftList(req, res){
   try {
     const profile = await Profile.findById(req.user.profile._id)
@@ -123,6 +164,9 @@ function deleteWeapon(req, res){
 // add finished boolean checkbox functionality
 
 export {
+  // passUserToView,
+  // indexProfiles,
+  // showProfiles,
   addToCraftList,
   createItemListing as create,
   editItemListing as edit,
