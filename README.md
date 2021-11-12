@@ -20,16 +20,14 @@ https://monster-hunter-lists.herokuapp.com/
 * Create a checkbox system on the list of all weapons to show what's finished
 * Add an item information page for each item required from the API
 
-# Tools Used
+# Technologies Used
 * JavaScript
 * Mongoose
 * EJS
 * MongoDB
 * CSS
 * Google OAuth
-* ColorSpace
 * Monster Hunter World API
-* Fontawesome.com
 
 # Original Wireframe and Planning Concept
 https://whimsical.com/mh-ui-wireframe-K5dpq1b5uMqhSHiYrpmU22
