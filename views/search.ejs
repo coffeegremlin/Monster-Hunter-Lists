@@ -7,7 +7,7 @@
   <div id="search-form-div">
     <% weapon.forEach(weapon => { %>
       <div class="weapon-deets">
-        <h1><%= weapon.name %></h1>
+        <h2><%= weapon.name %></h2>
         <img src="<%= weapon.assets?.image%>" alt="<%= weapon?.name %>">
         <h3>Weapon Type:</h3>
         <p><%= weapon.type %></p>
@@ -37,7 +37,7 @@
             <!-- PUSH INTO profile/weapon/itemschema -->
           <% }) %>
         <% } %>
-        <button type="submit" class="far fa-save"></button>
+        <button type="submit" style="color: #bd5624;" class="far fa-save"></button>
       </form>
     </div>
     <% }) %> 
