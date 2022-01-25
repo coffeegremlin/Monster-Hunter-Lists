@@ -13,7 +13,7 @@ router.get('/:id/weapon', isLoggedIn, profilesCtrl.craftList)
 router.get('/:profileId/weapon/:weaponId', isLoggedIn, profilesCtrl.showWeapon)
 // localhost:3000/:profileId/weapon/:weaponId - POST
 router.post('/:profileId/weapon/:weaponId/', isLoggedIn, profilesCtrl.create)
-// localhost:3000/:profileId/weapon/:weaponId - PUT (maybe...)
+// localhost:3000/:profileId/weapon/:weaponId - PUT
 router.put('/:profileId/weapon/:weaponId/', isLoggedIn, profilesCtrl.edit)
 // localhost:3000/:profileId/weapon/:weaponId - DELETE
 router.delete('/:profileId/weapon/:weaponId/:itemId', isLoggedIn, profilesCtrl.removeItemListing)

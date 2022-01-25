@@ -11,11 +11,14 @@
       <a href="/profiles/<%= user.profile._id %>/weapon" style="color: #bd5624;">
         <i type="submit" class="fas fa-scroll"></i>
       </a>
-      <a href="https://monsterhunterworld.wiki.fextralife.com/Weapons" style="color: #bd5624;">
+      <a href="https://monsterhunterworld.wiki.fextralife.com/Weapons" target="_blank" rel="noopener noreferrer" style="color: #bd5624;">
         <i type="submit" class="far fa-list-alt"></i>
       </a>
+      <!-- Add in the drop down here instead of the form, dipshit -->
       <form id="nav-search" action="/weaponSearch" method="POST">
+        <!-- this input needs to be the first drop down that sets and filters by using .include maybe -->
         <input name="query" type="text" placeholder="Search Weapons">
+          <!-- THEN use the $and to check for a specific returned weapon from the data filtered by the first dropdown -->
           <button type="submit" class="fas fa-search" style="color: #bd5624;"></button>
         </form>
         <a href="/auth/logout" style="color: #bd5624;">
