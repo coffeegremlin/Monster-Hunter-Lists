@@ -8,7 +8,11 @@
     <div class="weapon-listing">
       <h2><%= weapon.name %></h2>
       <a href="/profiles/<%= profile._id %>/weapon/<%= weapon._id %>">
-        <img src="<%= weapon.imageUrl %>" alt="<%= weapon.name %>">
+        <% if (weapon?.imageUrl) { %>
+          <img src="<%= weapon.imageUrl %>" alt="<%= weapon.name %>">
+        <% } else { %>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="No image available ya dingus">
+        <% } %>
       </a>
     </div>
   <% }) %> 

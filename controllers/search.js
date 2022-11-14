@@ -15,23 +15,28 @@ function weaponSearch(req, res){
   .catch(err => {
     console.log(err)
     res.redirect('/profiles/weapon')
+    // Make an error page to redirect to vvv
   })
 }
 
-// function weaponTypeFilter (req, res){
-//   axios.get(`https://mhw-db.com/weapons?p={"type":true}`)
-//   .then(response => {
-//     res.render('search1', {
-//       title: 'Weapon Type Results',
-//       user: req.user,
-//       weaponType: response.data
-//     })
-//   })
-//   .catch(err => {
-//     console.log(err)
-//     res.redirect('/profiles/weapon')
-//   })
-// }
+function weaponTypeFilter(req, res){
+  // Figure out how to call ALL weapons in the api here vvv
+  // Push the value of the drop down selected to the axios request under "type"
+  axios.get(`https://mhw-db.com/weapons?q={"type":"${req.body.query}"}`)
+  .then(response => {
+    console.log(response.data)
+    res.render('search', {
+      title: 'Weapon Type Results',
+      user: req.user,
+      weapon: response.data
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    // Make an error page to redirect to vvv
+    res.redirect('/profiles/weapon')
+  })
+}
 
 // function weaponNameFilter (req, res){
 //   axios.get(`https://mhw-db.com/weapons?p={"name":true}`)
@@ -46,6 +51,6 @@ function weaponSearch(req, res){
 
 export {
   weaponSearch,
-  // weaponTypeFilter,
+  weaponTypeFilter,
   // weaponNameFilter,
 }

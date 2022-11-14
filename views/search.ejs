@@ -8,7 +8,11 @@
     <% weapon.forEach(weapon => { %>
       <div class="weapon-deets">
         <h2><%= weapon.name %></h2>
-        <img src="<%= weapon.assets?.image%>" alt="<%= weapon?.name %>">
+        <% if (weapon?.assets?.image) { %>
+          <img src="<%= weapon.assets?.image%>" alt="<%= weapon?.name %>">
+          <% } else { %>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="No image available ya dingus">
+          <% } %>
         <h3>Weapon Type:</h3>
         <p><%= weapon.type %></p>
         <h3>Craftable:</h3>
@@ -29,7 +33,11 @@
       <form action="/profiles/weapon" method="POST">
         <input type="text" name="name" hidden value="<%= weapon.name %>">
         <input type="text" name="type" hidden value="<%= weapon.type %>">
-        <input type="text" name="imageUrl" hidden value="<%= weapon.assets.image %>">
+        <% if (weapon?.assets?.image) { %>
+          <input type="text" name="imageUrl" hidden value="<%= weapon.assets.image %>">
+          <% } else { %>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="No image available ya dingus">
+          <% } %>
         <% if(weapon.crafting.upgradeMaterials?.length){ %>
           <% weapon.crafting.upgradeMaterials.forEach((itemDetail, idx) => { %>
             <input type="text" name="itemDetailQuantity<%= idx %>" hidden value="<%= itemDetail.quantity %>">
@@ -37,7 +45,7 @@
             <!-- PUSH INTO profile/weapon/itemschema -->
           <% }) %>
         <% } %>
-        <button type="submit" style="color: #bd5624;" class="far fa-save"></button>
+        <button type="submit" style="color: #bd5624" class="far fa-save"></button>
       </form>
     </div>
     <% }) %> 
