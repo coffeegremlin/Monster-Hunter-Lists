@@ -5,25 +5,25 @@
 <body>
   <nav>
     <% if (user) { %>
-      <a href="/" style="color: #bd5624;">
+      <a href="/" style="color: #bd5624">
         <i type="submit" class="fas fa-home"></i>
       </a>
-      <a href="/profiles/<%= user.profile._id %>/weapon" style="color: #bd5624;">
+      <a href="/profiles/<%= user.profile._id %>/weapon" style="color: #bd5624">
         <i type="submit" class="fas fa-scroll"></i>
       </a>
-      <a href="https://monsterhunterworld.wiki.fextralife.com/Weapons" target="_blank" rel="noopener noreferrer" style="color: #bd5624;">
+      <a href="https://monsterhunterworld.wiki.fextralife.com/Weapons" target="_blank" rel="noopener noreferrer" style="color: #bd5624">
         <i type="submit" class="far fa-list-alt"></i>
       </a>
       <!-- Add in the drop down here instead of the form, good buddy -->
       <form id="nav-search" action="/weaponSearch" method="POST">
         <input name="query" type="text" placeholder="Case Sensitive Search">
-        <button type="submit" class="fas fa-search" style="color: #bd5624;"></button>
+        <button type="submit" class="fas fa-search" style="color: #bd5624"></button>
       </form>
 
-      <form id="drop-search" action="/weaponTypeFilter" method="Post">
-        <select required="yes">
-          <option value="great-sword">Great Sword</option>
-          <option value="long-sword">Long Sword</option>
+      <form id="drop-search" action="/weaponTypeFilter" method="POST">
+        <select name="query" required="yes">
+          <option name="great-sword" value="great-sword">Great Sword</option>
+          <option name="long-sword" value="long-sword">Long Sword</option>
           <option value="sword-and-shield">Sword and Shield</option>
           <option value="dual-blades">Dual Blades</option>
           <option value="hammer">Hammer</option>
@@ -37,12 +37,13 @@
           <option value="heavy-bowgun">Heavy Bowgun</option>
           <option value="bow">Bow</option>
         </select>
+        <!-- Might need to add a button with type submit to launch to a page with all weapon types selected listed alphabetically -->
         <!-- Add an onchange js property to the second one to submit on selection vvvvv -->
-        <select name="" id="">
-        </select>
-          <!-- THEN use the $and to check for a specific returned weapon from the data filtered by the first dropdown -->
+        <button type="submit" class="fas fa-search" style="color: #bd5624"></button>
+        <!-- THEN use the $and to check for a specific returned weapon from the data filtered by the first dropdown -->
       </form>
-        <a href="/auth/logout" style="color: #bd5624;">
+
+        <a href="/auth/logout" style="color: #bd5624">
           <i class="fas fa-sign-out-alt"></i>
         </a>
     <% } else { %>

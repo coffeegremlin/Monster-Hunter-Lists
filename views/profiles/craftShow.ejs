@@ -13,7 +13,11 @@
     <h3><%= weapon.name %></h3>
     <h2>Weapon Type: </h2>
     <h3><%= weapon.type %></h3>
-    <img src="<%= weapon.imageUrl %>" alt="<%= weapon.name %>">
+    <% if (weapon?.imageUrl) { return( %>
+    <img src="<%= weapon?.imageUrl %>" alt="<%= weapon.name %>">
+    <% )} else { return( %>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" alt="No image available ya dingus">
+    <% )} %>
       <% if (weapon.itemObjects.length) { %> 
       <% weapon.itemObjects.forEach(listing => { %>
         <p>
