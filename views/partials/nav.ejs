@@ -14,11 +14,13 @@
       <a href="https://monsterhunterworld.wiki.fextralife.com/Weapons" target="_blank" rel="noopener noreferrer" style="color: #bd5624;">
         <i type="submit" class="far fa-list-alt"></i>
       </a>
-      <!-- Add in the drop down here instead of the form, dipshit -->
+      <!-- Add in the drop down here instead of the form, good buddy -->
       <form id="nav-search" action="/weaponSearch" method="POST">
-        <!-- this input needs to be the first drop down that sets and filters by using .include maybe -->
-        <input name="query" type="text" placeholder="Search Weapons">
-        <!-- add an onchange property to filter and return only the weapons of selected type vvvvv -->
+        <input name="query" type="text" placeholder="Case Sensitive Search">
+        <button type="submit" class="fas fa-search" style="color: #bd5624;"></button>
+      </form>
+
+      <form id="drop-search" action="/weaponTypeFilter" method="Post">
         <select required="yes">
           <option value="great-sword">Great Sword</option>
           <option value="long-sword">Long Sword</option>
@@ -37,11 +39,9 @@
         </select>
         <!-- Add an onchange js property to the second one to submit on selection vvvvv -->
         <select name="" id="">
-
         </select>
           <!-- THEN use the $and to check for a specific returned weapon from the data filtered by the first dropdown -->
-          <button type="submit" class="fas fa-search" style="color: #bd5624;"></button>
-        </form>
+      </form>
         <a href="/auth/logout" style="color: #bd5624;">
           <i class="fas fa-sign-out-alt"></i>
         </a>
